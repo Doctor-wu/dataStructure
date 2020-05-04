@@ -11,11 +11,17 @@ public class Test {
 //        }
 //        list.delete(list.getValue()[0]);
 //        System.out.println(String.format("数组长度：%d",list.length));
-        CommLink commLink = new CommLink();
-        commLink.add(new Commodity("001", "可乐", 3.0, 10));
-        commLink.add(new Commodity("002", "雪碧", 3.0, 10));
-        commLink.add(new Commodity("003", "橙汁", 3.0, 10));
-        commLink.printData();
-        new Tree<TreeNode>(new TreeNode(commLink,null,null,0),null);
+//        CommLink commLink = new CommLink();
+//        commLink.add(new Commodity("001", "可乐", 3.0, 10));
+//        commLink.add(new Commodity("002", "雪碧", 3.0, 10));
+//        commLink.add(new Commodity("003", "橙汁", 3.0, 10));
+//        commLink.printData();
+//        new Tree<TreeNode>(new TreeNode(commLink,null,null,0),null);
+        Monitor monitor = new Monitor(new Object());
+        monitor.print("1");
+        String[] strings = new String[2];
+        strings[0] = "测试1";
+        strings[1] = "测试2";
+        monitor.renderMessage(new Message("测试名称","测试类别",new Operation(strings)));
     }
 }

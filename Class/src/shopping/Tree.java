@@ -1,26 +1,29 @@
-import org.w3c.dom.NodeList;
+package shopping;
 
 public class Tree<T> {
     private TreeNode root;
-    Tree(T data){
-        this.root = new TreeNode(data,null,new TreeNodeList(20),0);
+
+    Tree(T data, TreeNode parent) {
+        this.root = new TreeNode(data, parent, new TreeNodeList(10), 0);
     }
 }
 
 class TreeNode<T> {
     private T Data;
     private int level;
+    private TreeNode root;
     private TreeNodeList siblings;
     private TreeNodeList children;
     private TreeNode parent;
     TreeNode(T data,TreeNode parent, TreeNodeList siblings,int level){
+        this.root = this;
         this.Data = data;
         this.parent = parent;
         this.siblings = siblings;
         this.level = level;
     };
     // 树操作
-    public Boolean insert(TreeNode node){
+    public Boolean insert(TreeNode node){// 插入子节点
         try {
             this.children.push(node);
             return true;
@@ -28,6 +31,23 @@ class TreeNode<T> {
             return false;
         }
     }
+    public Boolean delete(TreeNode node){// 删除子节点
+        try{
+            this.children.delete(node);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+//    public TreeNode findNode(String id){
+//        if(this.Data.getID()==id) return this;
+//        else if(this.children.length!=0){
+//            for (TreeNode item:this.children.getValue()) {
+//                item.findNode(id);
+//            }
+//        }
+//        return null;
+//    }
 
 
     // 基础方法

@@ -1,6 +1,3 @@
-/*
-商品类
- */
 package shopping;
 
 /**

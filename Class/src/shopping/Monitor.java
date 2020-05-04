@@ -1,6 +1,9 @@
+package shopping;
+
 import java.util.function.Function;
 
 public class Monitor {
+    public static String location;
     // 当前控制对象
     private Object curController;
     // 构造函数

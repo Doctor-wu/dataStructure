@@ -22,7 +22,8 @@ public class CommLink {
         tailNode = headNode;
     }
 
-    public Commodity findCommByID(String ID) //通过商品ID在查找特定商品，返回该商品对象的引用，若未找到返回null。 
+    public Commodity findCommByID(String ID) 
+    //通过商品ID在查找特定商品，返回该商品对象的引用，若未找到返回null。 
     {
         CommNode currNode = headNode;
         Commodity resComm = null;
@@ -39,7 +40,8 @@ public class CommLink {
         return resComm;
     }
 
-    public ArrayList<Commodity> findCommByName(String ID) //通过商品名在 商品链表 中查找商品，返回商品对象的引用的数组。（不同商品名称可能相同，因此返回数组。）
+    public ArrayList<Commodity> findCommByName(String ID)
+    //通过商品名在 商品链表 中查找商品，返回商品对象的引用的数组。（不同商品名称可能相同，因此返回数组。）
     {
         CommNode currNode = headNode;
         ArrayList<Commodity> resComm = null;

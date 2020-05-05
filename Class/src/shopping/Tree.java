@@ -12,6 +12,11 @@ public class Tree {
     public TreeNode getRoot() {
         return root;
     }
+    public TreeNodeList collectNodeListById(String id){
+        TreeNodeList list = new TreeNodeList(5);
+        this.root.collectNodeById(list, id);
+        return list;
+    }
 }
 
 class TreeNode {
@@ -86,10 +91,21 @@ class TreeNode {
         return null;
     }
 
+
+    public void collectNodeById(TreeNodeList list,String id){
+        if(this.Data.getCommByID(id)!=null) list.push(this);
+        if(this.children.length!=0){
+            for (int i=0;i<this.children.length;i++) {
+                this.children.getValue()[i].collectNodeById(list, id);
+            }
+        }
+    }
+
     public Boolean listChildren(){
         if(this.children.length!=0){
             for (int i = 0; i <this.children.length ; i++) {
                 this.children.getValue()[i].getData().printData();
+                System.out.println("");
                 System.out.println("");
             }
             return true;

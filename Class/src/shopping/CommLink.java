@@ -231,6 +231,7 @@ class CommNode {
             }
             case ("4"): {
                 //查看该商品属于哪些分类
+                 //findCommByID(this.CommID)
             }
             case ("5"): {
                 //返回上一级

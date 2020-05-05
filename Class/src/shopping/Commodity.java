@@ -36,6 +36,13 @@ public class Commodity {   //商品类，缩写为Comm。
 
     @Override
     public String toString() {
-        return "商品ID：" + this.ID + "\n商品名：" + this.name + "\n商品价格：" + this.price + "\n商品数量：" + this.count +  "\n";
+        return "商品ID：" + this.ID + "\n商品名：" + this.name + "\n商品价格：" + this.price + "\n商品数量：" + this.count + "\n";
+    }
+
+    public Message getMsg() {
+        String[] operations = new String[]{"修改商品名", "修改商品价格", "修改商品数量","将该商品加入到分类","查看该商品属于哪些分类"};
+        Operation operation = new Operation(operations);
+        Message resMsg = new Message(this.name, "商品", operation);
+        return resMsg;
     }
 }

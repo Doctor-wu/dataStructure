@@ -3,8 +3,6 @@
  */
 package shopping;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author 69465
@@ -98,7 +96,7 @@ public class CommLink {
         return false;
     }
 
-    public void printData() { //输出链表全部数据，商品会详细输出所有数据。
+    public void printData() { //输出链表全部结点 ，商品会详细输出所有数据。
         CommNode currNode = headNode;
         while (currNode != null) {
             if (currNode.commodity != null) {

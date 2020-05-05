@@ -38,11 +38,8 @@ public class Commodity {   //商品类，缩写为Comm。
     public String toString() {
         return "商品ID：" + this.ID + "\n商品名：" + this.name + "\n商品价格：" + this.price + "\n商品数量：" + this.count + "\n";
     }
-
-    public Message getMsg() {
-        String[] operations = new String[]{"修改商品名", "修改商品价格", "修改商品数量","将该商品加入到分类","查看该商品属于哪些分类"};
-        Operation operation = new Operation(operations);
-        Message resMsg = new Message(this.name, "商品", operation);
-        return resMsg;
+    public String toStringNoTitle() { //把类输出成一行字符串，不包含"商品ID："这样的Title，空格分隔。
+        return this.ID + " " + this.name + " " + this.price + " " + this.count + "\n";
     }
+
 }

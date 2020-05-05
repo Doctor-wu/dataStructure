@@ -13,17 +13,18 @@ public class Shopping {
 
     public static void main(String[] args) {
 
-        /*****测试案例 可以在这里参考各方法的作用*****/
-        CommLink commLink = new CommLink(); //创建商品链表
+        /**
+         * ***测试案例 可以在这里参考各方法的作用****
+         */
+//        CommLink commLink = new CommLink(); //创建商品链表
+//
+//        commLink.add(new Commodity("001", "可乐", 1.5, 10)); //向链表插入四个商品
+//        commLink.add(new Commodity("002", "雪碧", 3.0, 15));
+//        commLink.add(new Commodity("003", "橙汁", 3.0, 8));
+//        commLink.add(new Commodity("004", "椰子汁", 4.0, 12));
 
-        commLink.add(new Commodity("001", "可乐", 1.5, 10)); //向链表插入四个商品
-        commLink.add(new Commodity("002", "雪碧", 3.0, 15));
-        commLink.add(new Commodity("003", "橙汁", 3.0, 8));
-        commLink.add(new Commodity("004", "椰子汁", 4.0, 12));
-        
 //        System.out.println("插入的四个商品：");
 //        commLink.printData();
-
 //        CommLink commTempLink = commLink.createCommLinkByID("002", "003"); //将ID为002和003的商品串为一条新链表，用于下面创建新分类时加入。
 //        Classification clas = new Classification("yingliao", "饮料", commTempLink); //创建一个饮料分类
 //        System.out.println("\n新创建的分类：");
@@ -37,10 +38,9 @@ public class Shopping {
 //        clas.deleteCommByID("002"); //在分类中删除ID为002商品
 //        System.out.print("\n删除后分类包含这些商品：");
 //        clas.commodity.printName();
-        
-
-        /*****测试案例 可以在这里参考各方法的作用*****/
-        
+        /**
+         * ***测试案例 可以在这里参考各方法的作用****
+         */
 //        Monitor monitor = new Monitor(new Object());
 //        monitor.print("1");
 //        String[] strings = new String[2];
@@ -48,7 +48,9 @@ public class Shopping {
 //        strings[1] = "测试2";
 //        monitor.renderMessage(new Message("测试名称","测试类别",new Operation(strings)));
 //        monitor.renderMessage(commLink.findCommByID("001").getMsg());
-        new Market().run();  
+        Market market = new Market();
+        market.run();
+
     }
 
 }

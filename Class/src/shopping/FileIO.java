@@ -5,7 +5,6 @@
  */
 package shopping;
 
-import java.util.*;
 import java.io.*;
 
 /**
@@ -14,12 +13,12 @@ import java.io.*;
  */
 public class FileIO {
 
-    static final String CommDATA = "CommDATA.json";
-    static final String ClasDATA = "ClasDATA.json";
+    static final String CommDATA = "CommDATA";
+    static final String ClasDATA = "ClasDATA";
 
-    private void saveDataToFile(String fileName, String data) {
+    public boolean saveDataToFile(String fileName, String data) {
         BufferedWriter writer = null;
-        File file = new File(fileName + ".json");
+        File file = new File(fileName + ".txt");
         //如果文件不存在，则新建一个  
         if (!file.exists()) {
             try {
@@ -44,11 +43,12 @@ public class FileIO {
             }
         }
         System.out.println("文件写入成功！");
+        return true;
     }
 
-    private String getDatafromFile(String fileName) {
+    public String getDatafromFile(String fileName) {
 
-        String Path = fileName + ".json";
+        String Path = fileName + ".txt";
         BufferedReader reader = null;
         String laststr = "";
         try {
@@ -57,7 +57,7 @@ public class FileIO {
             reader = new BufferedReader(inputStreamReader);
             String tempString = null;
             while ((tempString = reader.readLine()) != null) {
-                laststr += tempString;
+                laststr += tempString + "\n";
             }
             reader.close();
         } catch (IOException e) {

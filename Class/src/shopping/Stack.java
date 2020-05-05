@@ -19,7 +19,7 @@ public class Stack {
     public String pop(){
         if(this.op>0){
             this.op--;
-            return this.data[this.op++];
+            return this.data[this.op+1];
         }else{
             return null;
         }

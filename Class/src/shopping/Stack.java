@@ -19,8 +19,9 @@ public class Stack {
     public String pop(){
         if(this.op>0){
             this.op--;
-            return this.data[this.op++];
+            return this.data[this.op+1];
         }else{
+            System.out.println("栈空无需pop");
             return null;
         }
     }

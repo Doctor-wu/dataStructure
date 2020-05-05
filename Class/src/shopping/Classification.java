@@ -54,7 +54,7 @@ public class Classification { //分类类，缩写为Clas。
     }
 
     public Message getMsg() {
-        String[] operations = new String[]{"修改分类名","列出该分类商品列表","输出该分类商品详细信息", "加入商品到该分类", "移除分类中的商品","统计该分类商品数量"};
+        String[] operations = new String[]{"返回上层分类","修改分类名","列出该分类商品列表","输出该分类商品详细信息", "加入商品到该分类", "移除分类中的商品","统计该分类商品数量"};
         Operation operation = new Operation(operations);
         Message resMsg = new Message(this.name, "分类", operation);
         return resMsg;

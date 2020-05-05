@@ -3,7 +3,7 @@ package shopping;
 import java.util.Scanner;// 这里真的找不到原生写法，只能借助util
 
 public class Monitor {
-    private Stack location;
+    public Stack location;
     private Scanner scanner;
     // 当前控制对象
     private Object curController;
@@ -32,11 +32,10 @@ public class Monitor {
 
     public void renderLocation(){
         String result = "";
-        for (String item:this.location.getData()) {
-            if(item =="#" || item == null) continue;
-            result += item+">";
+        for (int i=0;i<=this.location.op;i++) {
+            result += this.location.getData()[i]+">";
         }
-        result = result.substring(0,result.length()-1);
+        result = result.substring(2,result.length()-1);
         System.out.print(result);
         System.out.println("");
     }

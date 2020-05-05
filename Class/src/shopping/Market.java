@@ -3,9 +3,9 @@ package shopping;
 public class Market {
     private Stack posIdStack;
     public Monitor monitor;
-    private CommLink commodities;
-    private Tree commodityTree;
-    private TreeNode curNode;
+    public CommLink commodities;
+    public Tree commodityTree;
+    public TreeNode curNode;
     public int GID=-1;
     Market(){
         this.monitor = new Monitor(this);
@@ -14,6 +14,7 @@ public class Market {
         this.GID=this.GID+1;
         Classification classification = new Classification(String.valueOf(this.GID),this.monitor.askForLine(),link);
         this.commodityTree = new Tree(classification,null,this);
+        this.commodities = new CommLink();
         this.curNode = this.commodityTree.getRoot();
     }
     public void run(){
@@ -22,7 +23,7 @@ public class Market {
         System.out.println("");
         Boolean flag = true;
         while(flag){
-            this.monitor.renderMessage(this.commodityTree.getRoot().getMsg());
+            this.monitor.renderMessage(this.curNode.getMsg());
             char userOperate = this.monitor.askForOperation();
             flag = this.curNode.operate(userOperate);
             System.out.println("");

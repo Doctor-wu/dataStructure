@@ -22,11 +22,10 @@ public class CommLink {
         tailNode = headNode;
     }
 
-    public Commodity findCommByID(String ID) 
-    //通过商品ID在查找特定商品，返回该商品对象的引用，若未找到返回null。 
+    public Commodity findCommByID(String ID) //通过商品ID在查找特定商品，返回该商品对象的引用，若未找到返回null。 
     {
         CommNode currNode = headNode;
-        Commodity resComm = null;
+        Commodity resComm = null; //返回值
         while (currNode != null) {
             if (currNode.commodity != null) //检测到当前结点数据域为空时不操作，一般只有首结点数据域为空。
             {
@@ -40,14 +39,30 @@ public class CommLink {
         return resComm;
     }
 
-    public ArrayList<Commodity> findCommByName(String ID)
-    //通过商品名在 商品链表 中查找商品，返回商品对象的引用的数组。（不同商品名称可能相同，因此返回数组。）
+//    public CommNode findCommNodeByID(String ID) 
+//    //通过商品ID在查找特定商品，返回该商品结点的引用，若未找到返回null。与findCommByID()不同的是，这里返回的是结点而非商品对象。
+//    {
+//        CommNode currNode = headNode;
+//        CommNode resCommNode = null; //返回值
+//        while (currNode != null) {
+//            if (currNode.commodity != null) //检测到当前结点数据域为空时不操作，一般只有首结点数据域为空。
+//            {
+//                if (currNode.commodity.ID.equals(ID)) {
+//                    resCommNode = currNode;
+//                    return resCommNode; //ID唯一，所以找到时立刻返回。
+//                }
+//            }
+//            currNode = currNode.nextNode;
+//        }
+//        return resCommNode;
+//    }
+    public CommLink findCommByName(String name) //通过商品名在 商品链表 中查找商品，返回商品的引用的链表。（不同商品名称可能相同，因此返回链表。）
     {
         CommNode currNode = headNode;
-        ArrayList<Commodity> resComm = null;
+        CommLink resComm = null;
         while (currNode != null) {
             if (currNode.commodity != null) {
-                if (currNode.commodity.ID.equals(ID)) {
+                if (currNode.commodity.ID.equals(name)) {
                     resComm.add(currNode.commodity);
                 }
             }
@@ -57,7 +72,9 @@ public class CommLink {
     }
 
     public void add(Commodity commodity) { //添加结点到链表
+
         CommNode tempNode = new CommNode(commodity);
+        commodity.toString();
         tailNode.nextNode = tempNode;
         tailNode = tempNode;
         length++;
@@ -93,7 +110,6 @@ public class CommLink {
 
     public void printName() { //输出所有商品的名称
         CommNode currNode = headNode;
-        System.out.print("目前有以下商品：");
         while (currNode != null) {
             if (currNode.commodity != null) {
                 currNode.printName();
@@ -101,6 +117,32 @@ public class CommLink {
             }
             currNode = currNode.nextNode;
         }
+    }
+
+    public CommLink createCommLinkByID(String... commID) //用户给定一组商品ID，在该链表中找到这些ID所指的商品引用串成一条链表返回。主要用于创建分类时，分类包含这些ID的商品。
+    {
+        CommLink resCommLink = new CommLink();
+        Commodity tempComm = null;
+
+        for (String i : commID) {
+            tempComm = findCommByID(i);
+            if (tempComm != null) {
+                resCommLink.add(new Commodity(tempComm.ID, tempComm.name, tempComm.price, tempComm.count));
+            }
+        }
+        return resCommLink;
+    }
+
+    public int countNode() { //统计链表有多少个结点
+        CommNode currNode = headNode;
+        int res = 0;
+        while (currNode != null) {
+            if (currNode.commodity != null) {
+                res++;
+            }
+            currNode = currNode.nextNode;
+        }
+        return res;
     }
 
     //***************内部类 链表结点实现**************//

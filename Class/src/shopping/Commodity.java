@@ -22,14 +22,20 @@ public class Commodity {   //商品类，缩写为Comm。
         this.count = count;
     }
 
-    public void change(String name, double price, int count)
-    {
+    public void changeName(String name) {
         this.name = name;
+    }
+
+    public void changePrice(double price) {
         this.price = price;
+    }
+
+    public void changeCount(int count) {
         this.count = count;
     }
+
     @Override
     public String toString() {
-        return "\n商品ID：" + this.ID + "\n商品名：" + this.name + "\n商品价格：" + this.price + "\n商品数量：" + this.count;
+        return "商品ID：" + this.ID + "\n商品名：" + this.name + "\n商品价格：" + this.price + "\n商品数量：" + this.count +  "\n";
     }
 }

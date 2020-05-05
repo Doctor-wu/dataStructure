@@ -145,7 +145,7 @@ class TreeNode {
                     char ope = this.belongMarket.monitor.askForOperation();
                     if(Character.toString(ope).equals("0")){
                         System.out.print("请输入商品ID：");
-                        Commodity comm = this.Data.commodity.findCommByID(this.belongMarket.monitor.askForLine());
+                        Commodity comm = this.belongMarket.commodities.findCommByID(this.belongMarket.monitor.askForLine());
                         if(comm!=null){
                             CommLink link = new CommLink();
                             link.add(comm);
@@ -155,7 +155,7 @@ class TreeNode {
                         }
                     }else if(Character.toString(ope).equals("1")){
                         System.out.print("请输入商品名称：");
-                        CommLink link = this.Data.commodity.findCommByName(this.belongMarket.monitor.askForLine());
+                        CommLink link = this.belongMarket.commodities.findCommByName(this.belongMarket.monitor.askForLine());
                         if(link!=null){
                             link.printData();
                         }else{
@@ -167,7 +167,7 @@ class TreeNode {
                     break;
                 }
                 case ("3"):{
-                    if(this.Data.commodity.printData() == 0){
+                    if(this.belongMarket.commodities.printData() == 0){
                         System.out.println("该商城下无商品");
                     }
                     

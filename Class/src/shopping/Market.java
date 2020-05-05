@@ -23,19 +23,19 @@ public class Market {
     }
 
     public void run() {
-        loadComm(); //从文件读取商品数据，建立商品链表。
-//        System.out.println("");
-//        System.out.println("欢迎光临 " + this.commodityTree.getRoot().getData().name);
-//        System.out.println("");
-//        Boolean flag = true;
-//        while (flag) {
-//            this.monitor.renderMessage(this.commodityTree.getRoot().getMsg());
-//            char userOperate = this.monitor.askForOperation();
-//            flag = this.curNode.operate(userOperate);
-//            System.out.println("");
-//        }
-//        System.out.println(this.commodityTree.getRoot().getData().name + " is closed,Welcome for next time!");
-        savaComm(); //将商品链表保存到文件中。
+//        loadComm(); //从文件读取商品数据，建立商品链表。
+        System.out.println("");
+        System.out.println("欢迎光临 " + this.commodityTree.getRoot().getData().name);
+        System.out.println("");
+        Boolean flag = true;
+        while (flag) {
+            this.monitor.renderMessage(this.curNode.getMsg());
+            char userOperate = this.monitor.askForOperation();
+            flag = this.curNode.operate(userOperate);
+            System.out.println("");
+        }
+        System.out.println(this.commodityTree.getRoot().getData().name + " is closed,Welcome for next time!");
+//        savaComm(); //将商品链表保存到文件中。
 
     }
 

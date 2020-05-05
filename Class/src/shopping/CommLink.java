@@ -96,25 +96,31 @@ public class CommLink {
         return false;
     }
 
-    public void printData() { //输出链表全部结点 ，商品会详细输出所有数据。
+    public int printData() { //输出链表全部结点 ，商品会详细输出所有数据。
+        int count = 0;
         CommNode currNode = headNode;
         while (currNode != null) {
             if (currNode.commodity != null) {
+                count++;
                 System.out.println(currNode);
             }
             currNode = currNode.nextNode;
         }
+        return count;
     }
 
-    public void printName() { //输出所有商品的名称
+    public int printName() { //输出所有商品的名称，返回商品数量。
+        int count = 0;
         CommNode currNode = headNode;
         while (currNode != null) {
             if (currNode.commodity != null) {
+                count++;
                 currNode.printName();
                 System.out.print(" ");
             }
             currNode = currNode.nextNode;
         }
+        return count;
     }
 
     public CommLink createCommLinkByID(String... commID) //用户给定一组商品ID，在该链表中找到这些ID所指的商品引用串成一条链表返回。主要用于创建分类时，分类包含这些ID的商品。
@@ -142,7 +148,32 @@ public class CommLink {
         }
         return res;
     }
-
+//    public Boolean operate(char op){
+//        if(this.is){
+//            // 商城接管
+//            switch (Character.toString(op)){
+//                case("0"):{
+//
+//                }
+//                case ("1"):{
+//      
+//                }
+//                case ("2"):{
+//      
+//                }
+//                case ("3"):{
+//
+//                }
+//                case ("4"):{
+//
+//                }
+//                default:{
+//                    System.out.println("该目录不支持"+op+"操作");
+//                }
+//            }
+//        }
+//        return true;
+//    }
     //***************内部类 链表结点实现**************//
     class CommNode {
 

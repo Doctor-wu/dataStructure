@@ -41,14 +41,14 @@ public class Shopping {
 
         /*****测试案例 可以在这里参考各方法的作用*****/
         
-        Monitor monitor = new Monitor(new Object());
+//        Monitor monitor = new Monitor(new Object());
 //        monitor.print("1");
 //        String[] strings = new String[2];
 //        strings[0] = "测试1";
 //        strings[1] = "测试2";
 //        monitor.renderMessage(new Message("测试名称","测试类别",new Operation(strings)));
-        monitor.renderMessage(commLink.findCommByID("001").getMsg());
-        
+//        monitor.renderMessage(commLink.findCommByID("001").getMsg());
+        new Market().run();  
     }
 
 }

@@ -152,7 +152,10 @@ class TreeNode {
                     break;
                 }
                 case ("3"):{
-                    this.Data.commodity.printData();
+                    if(this.Data.commodity.printData() == 0){
+                        System.out.println("该分类下无商品");
+                    }
+                    
                     break;
                 }
                 case ("4"):{

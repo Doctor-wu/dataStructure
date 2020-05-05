@@ -11,6 +11,7 @@ public class Tree<T> {
 class TreeNode<T> {
     private T Data;
     private int level;
+    private Monitor monitor;
     private TreeNode root;
     private TreeNodeList siblings;
     private TreeNodeList children;
@@ -21,6 +22,7 @@ class TreeNode<T> {
         this.parent = parent;
         this.siblings = siblings;
         this.level = level;
+        this.monitor = new Monitor(this);
     };
     // 树操作
     public Boolean insert(TreeNode node){// 插入子节点

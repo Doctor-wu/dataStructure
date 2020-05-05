@@ -37,6 +37,12 @@ public class Shopping {
         clas.deleteCommByID("002"); //在分类中删除ID为002商品
         System.out.print("\n删除后分类包含这些商品：");
         clas.commodity.printName();
+//        Tree tree = new Tree(clas,null);
+//        System.out.println("");
+//        tree.getRoot().insert(new TreeNode(new Classification("doctorwu","找到我了",commTempLink), tree.getRoot(),tree.getRoot().getChildren(),tree.getRoot().getLevel()+1));
+//        System.out.println(tree.getRoot().findNodeByName("找到我了").getData().name);
+////        System.out.println(tree.getRoot().getChildren().getValue()[0].getData().printData());
+//        tree.getRoot().getChildren().getValue()[0].getData().printData();
         /*****测试案例 可以在这里参考各方法的作用*****/
         
     }

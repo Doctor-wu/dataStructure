@@ -30,7 +30,7 @@ public class Classification { //分类类，缩写为Clas。
     public Commodity getCommByID(String CommID)
     //给定一个ID，返回该分类下这个商品的引用。
     { 
-        return commodity.findCommByID(CommID);
+        return this.commodity.findCommByID(CommID);
     }
 
     public void addComm(Commodity commodity) { //添加一个商品到该分类中
@@ -51,6 +51,6 @@ public class Classification { //分类类，缩写为Clas。
         System.out.println("分类ID：" + this.ID);
         System.out.println("分类名：" + this.name);
         System.out.print("分类包含以下商品：");
-        commodity.printName();
+        this.commodity.printName();
     }
 }

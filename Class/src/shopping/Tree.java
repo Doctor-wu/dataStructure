@@ -1,28 +1,48 @@
 package shopping;
 
-public class Tree<T> {
+import java.util.Scanner;
+
+public class Tree {
     private TreeNode root;
 
-    Tree(T data, TreeNode parent) {
-        this.root = new TreeNode(data, parent, new TreeNodeList(10), 0);
+    Tree(Classification data, TreeNode parent, Market belongMarket) {
+        this.root = new TreeNode(data, parent, new TreeNodeList(10), 0,true,belongMarket);
+    }
+
+    public TreeNode getRoot() {
+        return root;
     }
 }
 
-class TreeNode<T> {
-    private T Data;
+class TreeNode {
+    private Classification Data;
     private int level;
-    private Monitor monitor;
     private TreeNode root;
     private TreeNodeList siblings;
     private TreeNodeList children;
     private TreeNode parent;
-    TreeNode(T data,TreeNode parent, TreeNodeList siblings,int level){
+    private Boolean isMarket;
+    private Market belongMarket;
+    TreeNode(Classification data,TreeNode parent, TreeNodeList siblings,int level, Market belongMarket){
         this.root = this;
         this.Data = data;
         this.parent = parent;
         this.siblings = siblings;
         this.level = level;
-        this.monitor = new Monitor(this);
+        this.children = new TreeNodeList(5);
+        this.isMarket = false;
+        this.belongMarket = belongMarket;
+    };
+
+    TreeNode(Classification data,TreeNode parent, TreeNodeList siblings,int level, Boolean isMarket, Market belongMarket){
+        this.root = this;
+        this.Data = data;
+        this.parent = parent;
+        this.siblings = siblings;
+        this.level = level;
+        this.children = new TreeNodeList(5);
+        this.isMarket = isMarket;
+        this.belongMarket = belongMarket;
     };
     // 树操作
     public Boolean insert(TreeNode node){// 插入子节点
@@ -41,23 +61,129 @@ class TreeNode<T> {
             return false;
         }
     }
-//    public TreeNode findNode(String id){
-//        if(this.Data.getID()==id) return this;
-//        else if(this.children.length!=0){
-//            for (TreeNode item:this.children.getValue()) {
-//                item.findNode(id);
-//            }
-//        }
-//        return null;
-//    }
+    public TreeNode findNodeById(String id){
+        if(this.Data.ID==id) return this;
+        else if(this.children.length!=0){
+            for (TreeNode item:this.children.getValue()) {
+                if( item.findNodeById(id)!=null){
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public TreeNode findNodeByName(String name){
+        if(this.Data.name.equals(name)) return this;
+        else if(this.children.length!=0){
+            for (TreeNode item:this.children.getValue()) {
+                if( item.findNodeByName(name)!=null){
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void listChildren(){
+        if(this.children.length!=0){
+            for (int i = 0; i <this.children.length ; i++) {
+                System.out.print(" "+this.children.getValue()[i].getData().name);
+            }
+        }else{
+            System.out.print("该分类暂无子分类");
+        }
+    }
+
+
+    // 数据操作
+    public Message getMsg(){
+        if(this.isMarket){
+            String[] strings = new String[8];
+            strings[0] = "退出系统";
+            strings[1] = "列出分类";
+            strings[2] = "查找商品";
+            strings[3] = "列出商品";
+            strings[4] = "添加商品";
+            strings[5] = "添加分类";
+            strings[6] = "删除商品";
+            strings[7] = "删除分类";
+            Operation operation = new Operation(strings);
+            return new Message(this.Data.name,"商城",operation);
+        }
+        return null;
+    }
+    public Boolean operate(char op){
+        if(this.isMarket){
+            // 商城接管
+            switch (Character.toString(op)){
+                case("0"):{
+                    return false;
+                }
+                case ("1"):{
+                    this.listChildren();
+                    break;
+                }
+                case ("2"):{
+                    System.out.print("请问要以何种方式搜索商品：【0】：ID 【1】：名称");
+                    System.out.println("");
+                    char ope = this.belongMarket.monitor.askForOperation();
+                    if(Character.toString(ope).equals("0")){
+                        System.out.print("请输入商品ID：");
+                        Commodity comm = this.Data.commodity.findCommByID(this.belongMarket.monitor.askForLine());
+                        if(comm!=null){
+                            CommLink link = new CommLink();
+                            link.add(comm);
+                            link.printData();
+                        }else{
+                            System.out.println("未查找到商品");
+                        }
+                    }else if(Character.toString(ope).equals("1")){
+                        System.out.print("请输入商品名称：");
+                        CommLink link = this.Data.commodity.findCommByName(this.belongMarket.monitor.askForLine());
+                        if(link!=null){
+                            link.printData();
+                        }else{
+                            System.out.println("未查找到商品");
+                        }
+                    }else{
+                        System.out.println("查找失败，未知命令: "+ope);
+                    }
+                    break;
+                }
+                case ("3"):{
+                    this.Data.commodity.printData();
+                    break;
+                }
+                case ("4"):{
+                    this.belongMarket.GID++;
+                    System.out.print("请输入商品名称：");
+                    String name = this.belongMarket.monitor.askForLine();
+                    System.out.print("请输入商品价格：");
+                    String price = this.belongMarket.monitor.askForLine();
+                    System.out.print("请输入商品数量：");
+                    String count = this.belongMarket.monitor.askForLine();
+                    Commodity comm = new Commodity(String.valueOf(this.belongMarket.GID),name,Double.parseDouble(price),Integer.parseInt(count));
+                    this.Data.addComm(comm);
+                    break;
+                }
+                default:{
+                    System.out.println("该目录不支持"+op+"操作");
+                }
+            }
+        }else{
+            // 委托给分类或商品
+        }
+        return true;
+    }
 
 
     // 基础方法
-    public T getData() {
+    public Classification getData() {
         return Data;
     }
 
-    public Number getLevel() {
+    public int getLevel() {
         return level;
     }
 
@@ -66,7 +192,7 @@ class TreeNode<T> {
     }
 
     public TreeNodeList getChildren() {
-        return children;
+        return this.children;
     }
 
     public TreeNodeList getSiblings() {
